@@ -1,28 +1,49 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Golden quotes</h1>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { database } from './main.js'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    
+  },
+  data() {
+    return {
+      quotes: [],
+    }
+  },
+  mounted() {
+    this.getQuotes();
+  },
+  methods: {
+    async getQuotes() {
+      let quotesRef = database.ref('quotes');
+      quotesRef.once('value', (snapshot) => {
+        snapshot.forEach((childSnap) => {
+          this.quotes.push(childSnap.val());
+        });
+      });
+    },
+    async postQuote() {
+      
+    },
+    // async testPostQuote() {
+    //   let quotesRef = database.ref('quotes');
+    //   quotesRef.push().set({
+    //     "name": "Spider",
+    //     "text": "I love spiders",
+    //     "date": "30.05.2021"
+    //   });
+    // }
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
