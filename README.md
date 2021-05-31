@@ -1,5 +1,5 @@
-# golden-quotes
-Just a small project
+# Golden quotes project
+The purpose of this project is to collect and share qoutes which sound great but how strange meaning.
 
 # technologies
-* python 3.7.3
+* @vue/cli 4.5.13
