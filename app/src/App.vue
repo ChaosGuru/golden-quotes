@@ -80,9 +80,10 @@ button {
   font-size: 2rem;
   color: #645801;
 }
-button:hover {
+button:hover, button:focus {
   background-color: #645801;
   border-color: #FFE600;
+  outline: #FFE600;
   color: #FFE600;
 }
 #title {
@@ -90,5 +91,12 @@ button:hover {
   text-align: center;
   font-size: 4rem;
   font-weight: normal;
+}
+
+@media screen and (min-width: 1000px) {
+  body {
+    margin: auto;
+    width: 1000px;
+  }
 }
 </style>

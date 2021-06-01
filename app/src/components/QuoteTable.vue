@@ -40,6 +40,10 @@ export default {
 </script>
 
 <style scoped>
+#quote-table {
+  display: flex;
+  flex-direction: column-reverse;
+}
 .quote {
   margin-top: 20px;
   padding: 10px;
