@@ -57,15 +57,19 @@ export default {
 <style>
 html {
   font-size: 62.5%;
+  min-height: 100vh;
 }
 body {
+  border: 30px solid;
+  border-image: url('./assets/frame2.png') 140 / 30px round;
+  /* background-size: 40rem; */
   margin: 0;
-  padding: 7vw;
-
+  padding: 0 7vw;
   font-family: 'Marck Script', 'Roboto';
   font-size: 2rem;
-  /* color: #A49300; */
   color: #645801;
+  min-height: 100vh;
+  /* box-sizing: border-box; */
 }
 p {
   margin: 0;
@@ -88,15 +92,20 @@ button:hover, button:focus {
 }
 #title {
   margin: 0;
+  color: #FFE600;
   text-align: center;
-  font-size: 4rem;
-  font-weight: normal;
+  font-size: 5rem;
+  font-weight: 600;
+  text-shadow: 
+    2px 2px 0 #645801,
+    -1px 1px 0 #645801,
+    -1px -1px 0 #645801,
+    1px -1px 0 #645801;
 }
-
 @media screen and (min-width: 1000px) {
-  body {
-    margin: auto;
-    width: 1000px;
-  }
+#app {
+  margin: auto;
+  width: 600px;
+}
 }
 </style>

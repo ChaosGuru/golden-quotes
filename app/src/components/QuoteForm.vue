@@ -6,7 +6,7 @@
         type="text" 
         name="author" 
         id="author"
-        maxlength="70"
+        maxlength="50"
         :class="{'has-error': error && invalidAuthor}"
         v-model="quote.author"
         v-on:focus="clearState">
@@ -14,7 +14,7 @@
       <textarea 
         name="text" 
         id="text"
-        maxlength="500"
+        maxlength="300"
         :class="{'has-error': error && invalidText}"
         v-model="quote.text"
         v-on:focus="clearState">
@@ -94,7 +94,7 @@ input, textarea {
   box-sizing: border-box;
 }
 textarea {
-  height: 15rem;
+  height: 17rem;
 }
 button {
   font-size: 3rem;
