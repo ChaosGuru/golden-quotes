@@ -4,6 +4,7 @@ import App from './App.vue'
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+import router from './router'
 
 Vue.config.productionTip = false
 
@@ -20,5 +21,6 @@ firebase.initializeApp(firebaseConfig);
 export const database = firebase.database();
 
 new Vue({
-  render: h => h(App),
+  router,
+  render: h => h(App)
 }).$mount('#app')
