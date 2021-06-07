@@ -1,12 +1,13 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
 
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
-import router from './router'
+import router from "./router";
+import store from "./store.js"
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlREaldzM_7xRgPWHwgpCZ-DDWa48VBRs",
@@ -17,11 +18,17 @@ const firebaseConfig = {
   messagingSenderId: "660711478575",
   appId: "1:660711478575:web:8a523fe609e518901e3dda"
 };
+
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
-export { database, firebase }
+export { database, firebase };
+
+firebase.auth().onAuthStateChanged((user) => {
+  store.dispatch("logInUser", user);
+})
 
 new Vue({
   router,
+  store,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

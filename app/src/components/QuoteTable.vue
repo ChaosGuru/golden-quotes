@@ -8,6 +8,7 @@
         <button 
           type="button" 
           class="delete-button"
+          v-if="user"
           v-on:click="removeQuote(quote.key)">
         Видалити</button>
       </div>
@@ -32,6 +33,7 @@ export default {
   },
   props: {
     quotes: Array,
+    user: Boolean,
   },
   methods: {
     removeQuote(quoteKey) {

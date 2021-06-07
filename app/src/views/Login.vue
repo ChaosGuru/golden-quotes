@@ -11,6 +11,7 @@
 
 <script>
 import { firebase } from '../main.js'
+import router from '../router'
 
 export default {
   name: 'login',
@@ -25,8 +26,7 @@ export default {
     async logIn() {
       firebase.auth().signInWithEmailAndPassword(this.email, this.code)
         .then(()=> {
-          console.log("You have logged in!!!")
-          // add state sign in
+          router.push('/');
         })
         .catch(() => {
           this.error = true;

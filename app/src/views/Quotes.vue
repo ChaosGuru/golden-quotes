@@ -1,19 +1,21 @@
 <template>
   <div class="qoutes">
-    <quote-form @add:quote="addQuote"></quote-form>
+    <quote-form v-if="user" @add:quote="addQuote"></quote-form>
     <quote-table 
       v-bind:quotes="quotes"
+      v-bind:user="user"
       @remove:quote="removeQuote">
     </quote-table>
     <div id="login-anchor">
-      <router-link to="/login" class="button">Ввійти</router-link>
-      <button v-on:click="logOut">Вийти</button>
+      <button v-if="user" v-on:click="logOut">Вийти</button>
+      <router-link v-else to="/login" class="button">Ввійти</router-link>
     </div>
   </div>
 </template>
 
 <script>
 import { database, firebase } from '../main.js'
+import { mapGetters } from 'vuex';
 import QuoteTable from '../components/QuoteTable.vue'
 import QuoteForm from '../components/QuoteForm.vue'
 
@@ -54,12 +56,14 @@ export default {
       database.ref('quotes/' + quoteKey).remove();
     },
     async logOut() {
-      firebase.auth().signOut().then(() => {
-        console.log("You have logged out")
-        // change state
-      })
+      firebase.auth().signOut();
     }
   },
+  computed: {
+    ...mapGetters({
+      user: "user"
+    })
+  }
 }
 </script>
 
