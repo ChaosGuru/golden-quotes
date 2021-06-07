@@ -5,11 +5,15 @@
       v-bind:quotes="quotes"
       @remove:quote="removeQuote">
     </quote-table>
+    <div id="login-anchor">
+      <router-link to="/login" class="button">Ввійти</router-link>
+      <button v-on:click="logOut">Вийти</button>
+    </div>
   </div>
 </template>
 
 <script>
-import { database } from '../main.js'
+import { database, firebase } from '../main.js'
 import QuoteTable from '../components/QuoteTable.vue'
 import QuoteForm from '../components/QuoteForm.vue'
 
@@ -48,6 +52,12 @@ export default {
     },
     async removeQuote(quoteKey) {
       database.ref('quotes/' + quoteKey).remove();
+    },
+    async logOut() {
+      firebase.auth().signOut().then(() => {
+        console.log("You have logged out")
+        // change state
+      })
     }
   },
 }
@@ -84,6 +94,14 @@ button:hover, button:focus, .button:hover, .button:focus {
     -1px 1px 0 #645801,
     -1px -1px 0 #645801,
     1px -1px 0 #645801;
+}
+#login-anchor {
+  position: fixed;
+  right: 2.5rem;
+  bottom: 2rem;
+}
+#login-anchor a {
+  padding: 0.3rem;
 }
 @media screen and (min-width: 1000px) {
 #app {
