@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 
 import firebase from "firebase/app";
+import 'firebase/app-check';
 import "firebase/auth";
 import "firebase/database";
 import router from "./router";
@@ -20,6 +21,10 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
+const appCheck = firebase.appCheck();
+appCheck.activate('6LeD-R0bAAAAAPX8zXu5d6Di733uLgxR51XbGrQq');
+
 const database = firebase.database();
 export { database, firebase };
 
